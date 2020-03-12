@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Shopping Card</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script defer src="js/vue.js"></script>
+    <script defer src="js/materialize.min.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+
+<body class="indigo lighten-5">
+    <main id="app">
+        <nav class="indigo mb-4">
+            <div class="nav-wrapper container">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class=" left hide-on-med-and-down">
+                    <li><a @click="to('products')">PRODUCTS</a></li>
+                    <li><a href="#">MY ORDERS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+                <!-- Cart  -->
+                <div id="cart">
+                    <a @click="showCart = !showCart"
+                        class="btn-floating btn-large waves-effect waves-light cyan darken-2">
+                        <i class="material-icons">shopping_cart</i>
+                    </a>
+                    <ul v-if="showCart" class="collection">
+                        <li v-for="item in cart" :key="item.id" class="collection-item avatar valign-wrapper">
+                            <img src="img/product.jpg" alt="" class="circle">
+                            <span class="title ">{{ item.name}} </span>
+                            <a href="" class="secondary-content"><i class="material-icons">delete</i></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- SideNav -->
+            <ul id="slide-out" class="sidenav">
+                <li>
+                    <h4 class="center-align black-text">User</h4>
+                </li>
+                <li class="divider"></li>
+                <li><a class="waves-effect" @click="to('products')">PRODUCTS</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            </ul>
+        </nav>
+        <!-- Products -->
+        <section v-if="page === 'products'" id="products" class="container">
+            <div class="row">
+                <div v-for="product in products" :key="product.id" class="col s12 m6 l4">
+                    <div class="card hoverable blue-grey lighten-5
+                    ">
+                        <div class="card-image">
+                            <img src="img/product.jpg">
+                            <button @click="addToCart(product.id)"
+                                class="btn-floating halfway-fab waves-effect waves-light indigo"><i
+                                    class="large material-icons">add_shopping_cart
+                                </i></button>
+                        </div>
+                        <div class="card-content">
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.description }}</p>
+                        </div>
+                        <div class="card-action indigo white-text center-align">
+                            <strong> {{ product.price }} &#8381; </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
