@@ -40,5 +40,14 @@ nav {
     color: #333;
 }
 
+.order{
+    width: 80%;
+    margin: 0;
+}
+
+.remove-order{
+    color: #333;
+    cursor: pointer;
+}
 
 

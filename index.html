@@ -20,7 +20,7 @@
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class=" left hide-on-med-and-down">
                     <li><a @click="to('products')">PRODUCTS</a></li>
-                    <li><a href="#">MY ORDERS</a></li>
+                    <li><a @click="to('order')">ORDER</a></li>
                     <li><a href="#">JavaScript</a></li>
                 </ul>
                 <!-- Cart  -->
@@ -33,9 +33,10 @@
                         <li v-for="item in cart" :key="item.id" class="collection-item avatar valign-wrapper">
                             <img src="img/product.jpg" alt="" class="circle">
                             <span class="title ">{{ item.name}} </span>
-                            <a href="" class="secondary-content"><i class="material-icons">delete</i></a>
+                            <a @click="removeFromCart(item.id)" class="secondary-content">
+                                <i class="material-icons">delete</i>
+                            </a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -73,6 +74,25 @@
                     </div>
                 </div>
             </div>
+        </section>
+        <section v-if="page === 'order'" class="container">
+            <ul class="collection">
+                <li v-for="item in cart" :key="item.id" class="collection-item avatar valign-wrapper">
+                    <img src="img/product.jpg" alt="" class="circle">
+                    <div class="row order valign-wrapper">
+                        <p class=" col s4 center-align">{{ item.name}} </p>
+                        <div class="col s4">
+                            <input type="number" min="1" name="number" id="">
+                        </div>
+                        <span class="col s4 right-align">final price</span>
+                    </div>
+
+                    <a @click="removeFromCart(item.id)" class="secondary-content remove-order">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </li>
+
+            </ul>
         </section>
     </main>
 </body>
